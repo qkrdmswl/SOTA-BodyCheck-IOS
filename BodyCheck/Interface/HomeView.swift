@@ -9,44 +9,54 @@ import SwiftUI
 
 struct HomeView: View {
     private enum Tabs {
-        case home, chalender, file, myPage
+        case home, chalender, timer, file, myPage
     }
     @State private var selectedTab: Tabs =  .home
     
+    init() {
+        UITabBar.appearance().backgroundColor = UIColor.blue
+    }
+    // body
+
     var body: some View {
         TabView(selection: $selectedTab) {
             Group{
                 home
                 chalender
+                timer
                 file
                 myPage
             }
-//            .accentColor(.primary)
+            .accentColor(.black)
         }
-//        .accentColor(.peach)
-//        .edgesIgnoringSafeArea(.top)
     }
 }
 
 private extension HomeView {
-   // MARK: View
-   
+    // view
     var home: some View {
         Home()
             .tag(Tabs.home)
             .tabItem(image: "house", text: "홈")
+            .onAppear { UITableView.appearance().separatorStyle = .none }
     }
-    
+
     var chalender: some View {
         Text("마이페이지")
             .tag(Tabs.chalender)
             .tabItem(image: "person", text: "캘린더")
     }
     
+    var timer: some View {
+        Text("측정")
+            .tag(Tabs.chalender)
+            .tabItem(image: "timer", text: "측정")
+    }
+
     var file: some View {
         Text("마이페이지")
             .tag(Tabs.file)
-            .tabItem(image: "person", text: "파일")
+            .tabItem(image: "photo.on.rectangle", text: "파일")
     }
 
     var myPage: some View {
@@ -59,20 +69,13 @@ private extension HomeView {
 fileprivate extension View {
    func tabItem(image: String, text: String) -> some View {
      self.tabItem {
-//       Symbol(image, scale: .large)
-//         .font(Font.system(size: 17, weight: .light))
+       Symbol(image, scale: .large)
+         .font(Font.system(size: 20, weight: .light))
        Text(text)
      }
    }
  }
 
-struct SomeView: View {
-    var body: some View {
-        VStack {
-            Text("임시 페이지")
-        }.font(.title)
-    }
-}
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
