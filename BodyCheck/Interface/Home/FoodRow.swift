@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FoodRow: View {
+    @State private var willAppear: Bool = false
     let food: Food
     
     var body: some View {
@@ -17,6 +18,13 @@ struct FoodRow: View {
         }
         .frame(height: 150)
         .background(Color.primary.colorInvert())
+        .cornerRadius(15)
+        .shadow(color: .gray, radius: 5, x: 2, y: 2)
+        .padding(.vertical, 3)
+        .padding(.horizontal, 9)
+        .opacity(willAppear ? 1 : 0)
+        .animation(.easeInOut(duration: 0.4))
+        .onAppear { self.willAppear = true }
     }
 }
 
