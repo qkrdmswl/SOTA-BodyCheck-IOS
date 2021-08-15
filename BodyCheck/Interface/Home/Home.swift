@@ -17,8 +17,8 @@ struct Home: View {
 //                       FoodRow(food: food)
 //                     }
 //                   }
-
-            VStack {
+            ScrollView() {
+            // VStack {
                 HStack(alignment: .top, spacing: 3) {
                     Text("즐겨찾는 운동")
                         .font(.headline).fontWeight(.medium)
