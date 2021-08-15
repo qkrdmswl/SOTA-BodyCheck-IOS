@@ -42,19 +42,19 @@ private extension HomeView {
     }
 
     var chalender: some View {
-        Text("마이페이지")
+        ImageView()
             .tag(Tabs.chalender)
             .tabItem(image: "person", text: "캘린더")
     }
     
     var timer: some View {
-        Text("측정")
+        StopWatchView()
             .tag(Tabs.chalender)
             .tabItem(image: "timer", text: "측정")
     }
 
     var file: some View {
-        Text("마이페이지")
+        Text("파일")
             .tag(Tabs.file)
             .tabItem(image: "photo.on.rectangle", text: "파일")
     }
