@@ -17,6 +17,14 @@
 		2633224F26BFCED200359C89 /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2633224E26BFCED200359C89 /* BundleExtension.swift */; };
 		2633225126BFCF8600359C89 /* Bucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2633225026BFCF8600359C89 /* Bucket.swift */; };
 		2633225626BFD01500359C89 /* ProductData.json in Resources */ = {isa = PBXBuildFile; fileRef = 2633225526BFD01500359C89 /* ProductData.json */; };
+		26CF24FD26C94355003FAF30 /* FindAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF24FC26C94355003FAF30 /* FindAccountView.swift */; };
+		26CF24FF26C94360003FAF30 /* PassModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF24FE26C94360003FAF30 /* PassModel.swift */; };
+		26CF250126C9436C003FAF30 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF250026C9436C003FAF30 /* LoginView.swift */; };
+		26CF250326C94376003FAF30 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF250226C94376003FAF30 /* Login.swift */; };
+		26CF250526C94382003FAF30 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF250426C94382003FAF30 /* SignupView.swift */; };
+		26CF250726C94390003FAF30 /* addUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF250626C94390003FAF30 /* addUpdate.swift */; };
+		26CF250926C9441F003FAF30 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF250826C9441F003FAF30 /* ImagePicker.swift */; };
+		26CF250B26C9443B003FAF30 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF250A26C9443B003FAF30 /* ImageView.swift */; };
 		26F150DD26B61D0700AC3DA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F150DC26B61D0700AC3DA4 /* AppDelegate.swift */; };
 		26F150DF26B61D0700AC3DA4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F150DE26B61D0700AC3DA4 /* SceneDelegate.swift */; };
 		26F150E126B61D0700AC3DA4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F150E026B61D0700AC3DA4 /* ContentView.swift */; };
@@ -27,6 +35,8 @@
 		26F150F526B61DA400AC3DA4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F150F426B61DA400AC3DA4 /* HomeView.swift */; };
 		26F150F726B621E600AC3DA4 /* FoodRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F150F626B621E600AC3DA4 /* FoodRow.swift */; };
 		26F150FA26B624D200AC3DA4 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F150F926B624D200AC3DA4 /* Food.swift */; };
+		26FC375326C8CD3600D5E44A /* StopWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC375226C8CD3600D5E44A /* StopWatch.swift */; };
+		26FC375526C8CEE900D5E44A /* StopWatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC375426C8CEE900D5E44A /* StopWatchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +50,14 @@
 		2633224E26BFCED200359C89 /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
 		2633225026BFCF8600359C89 /* Bucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bucket.swift; sourceTree = "<group>"; };
 		2633225526BFD01500359C89 /* ProductData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = ProductData.json; path = ../../../SweetSwiftUI/FruitMart/Resources/ProductData.json; sourceTree = "<group>"; };
+		26CF24FC26C94355003FAF30 /* FindAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindAccountView.swift; sourceTree = "<group>"; };
+		26CF24FE26C94360003FAF30 /* PassModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassModel.swift; sourceTree = "<group>"; };
+		26CF250026C9436C003FAF30 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		26CF250226C94376003FAF30 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		26CF250426C94382003FAF30 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		26CF250626C94390003FAF30 /* addUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addUpdate.swift; sourceTree = "<group>"; };
+		26CF250826C9441F003FAF30 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		26CF250A26C9443B003FAF30 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		26F150D926B61D0700AC3DA4 /* BodyCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BodyCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26F150DC26B61D0700AC3DA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26F150DE26B61D0700AC3DA4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +70,8 @@
 		26F150F426B61DA400AC3DA4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		26F150F626B621E600AC3DA4 /* FoodRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodRow.swift; sourceTree = "<group>"; };
 		26F150F926B624D200AC3DA4 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		26FC375226C8CD3600D5E44A /* StopWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatch.swift; sourceTree = "<group>"; };
+		26FC375426C8CEE900D5E44A /* StopWatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +105,13 @@
 				2633225526BFD01500359C89 /* ProductData.json */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		26CF250C26C94524003FAF30 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		26F150D026B61D0700AC3DA4 = {
@@ -132,6 +159,12 @@
 			isa = PBXGroup;
 			children = (
 				26F150F426B61DA400AC3DA4 /* HomeView.swift */,
+				26CF250C26C94524003FAF30 /* Login */,
+				26CF250026C9436C003FAF30 /* LoginView.swift */,
+				26CF250226C94376003FAF30 /* Login.swift */,
+				26CF250426C94382003FAF30 /* SignupView.swift */,
+				26CF24FE26C94360003FAF30 /* PassModel.swift */,
+				26CF24FC26C94355003FAF30 /* FindAccountView.swift */,
 				26F150F126B61D2E00AC3DA4 /* Home */,
 			);
 			path = Interface;
@@ -145,6 +178,11 @@
 				2633223E26BFC1E700359C89 /* FoodDetailView.swift */,
 				2633224026BFC29300359C89 /* QuantitySelector.swift */,
 				2633224526BFC4A600359C89 /* CompleteMessage.swift */,
+				26FC375226C8CD3600D5E44A /* StopWatch.swift */,
+				26FC375426C8CEE900D5E44A /* StopWatchView.swift */,
+				26CF250626C94390003FAF30 /* addUpdate.swift */,
+				26CF250826C9441F003FAF30 /* ImagePicker.swift */,
+				26CF250A26C9443B003FAF30 /* ImageView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -228,22 +266,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26FC375326C8CD3600D5E44A /* StopWatch.swift in Sources */,
 				26F150FA26B624D200AC3DA4 /* Food.swift in Sources */,
+				26CF250926C9441F003FAF30 /* ImagePicker.swift in Sources */,
+				26CF24FF26C94360003FAF30 /* PassModel.swift in Sources */,
+				26CF250B26C9443B003FAF30 /* ImageView.swift in Sources */,
 				2633224826BFC4F800359C89 /* Popup.swift in Sources */,
 				26F150DD26B61D0700AC3DA4 /* AppDelegate.swift in Sources */,
 				2633223F26BFC1E700359C89 /* FoodDetailView.swift in Sources */,
 				26F150DF26B61D0700AC3DA4 /* SceneDelegate.swift in Sources */,
 				2633224B26BFC8C300359C89 /* Resize.swift in Sources */,
 				26F150F326B61D3900AC3DA4 /* Home.swift in Sources */,
+				26CF250326C94376003FAF30 /* Login.swift in Sources */,
 				2633224F26BFCED200359C89 /* BundleExtension.swift in Sources */,
 				26F150F526B61DA400AC3DA4 /* HomeView.swift in Sources */,
 				2633224426BFC38E00359C89 /* Symbol.swift in Sources */,
 				2633225126BFCF8600359C89 /* Bucket.swift in Sources */,
+				26CF250726C94390003FAF30 /* addUpdate.swift in Sources */,
+				26FC375526C8CEE900D5E44A /* StopWatchView.swift in Sources */,
+				26CF24FD26C94355003FAF30 /* FindAccountView.swift in Sources */,
+				26CF250126C9436C003FAF30 /* LoginView.swift in Sources */,
 				2633224626BFC4A600359C89 /* CompleteMessage.swift in Sources */,
 				26F150F726B621E600AC3DA4 /* FoodRow.swift in Sources */,
 				2633224126BFC29300359C89 /* QuantitySelector.swift in Sources */,
 				26F150E126B61D0700AC3DA4 /* ContentView.swift in Sources */,
 				2633224D26BFC99E00359C89 /* ShrinkButtonStyle.swift in Sources */,
+				26CF250526C94382003FAF30 /* SignupView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,10 +428,10 @@
 		26F150EE26B61D0900AC3DA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"BodyCheck/Preview Content\"";
+				DEVELOPMENT_TEAM = ZT87FRBNZF;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = BodyCheck/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -400,10 +448,10 @@
 		26F150EF26B61D0900AC3DA4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"BodyCheck/Preview Content\"";
+				DEVELOPMENT_TEAM = ZT87FRBNZF;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = BodyCheck/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
