@@ -10,7 +10,7 @@ import SwiftUI
 struct Home: View {
 //    let bucket: Bucket
     var body: some View {
-        NavigationView {
+//        NavigationView {
             
 //            List(bucket.foods) { food in
 //                     NavigationLink(destination: Text("상세 정보")) {
@@ -18,40 +18,78 @@ struct Home: View {
 //                     }
 //                   }
             ScrollView() {
+                HStack {
+                    title
+                    topBtn
+                }
+                Spacer()
             // VStack {
-                HStack(alignment: .top, spacing: 3) {
-                    Text("즐겨찾는 운동")
-                        .font(.headline).fontWeight(.medium)
-                    Symbol("arrowtriangle.down.square")
-                        .padding(2)
-                    Spacer()
-
-                }
-                .padding(.bottom, 20)
-                .padding(.top, 60)
-
-                HStack {
-                    Text("운동 통계")
-                        .font(.title3).fontWeight(.medium)
-                    Spacer()
-                }
-                .padding(.bottom, 20)
+//                HStack(alignment: .top, spacing: 3) {
+//                    Text("즐겨찾는 운동")
+//                        .font(.headline).fontWeight(.medium)
+//                    Symbol("arrowtriangle.down.square")
+//                        .padding(2)
+//                    Spacer()
+//
+//                }
+//                .padding(.bottom, 20)
+//                .padding(.top, 60)
                 
-                HStack {
-                    Text("식단 계획")
-                        .font(.title3).fontWeight(.medium)
-                    Spacer()
-                }
-                .padding(.bottom, 20)
+                Text("성중님의").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                Text("8/14 운동 통계").font(.title/*@END_MENU_TOKEN@*/).fontWeight(/*@START_MENU_TOKEN@*/.bold)
 
-                HStack {
-                    Text("최근 식단")
-                        .font(.title3).fontWeight(.medium)
-                    Spacer()
+                HStack{
+                    VStack{
+                        Text("달리기")
+                        Text("걷기")
+                        Text("스쿼트")
+                    }
+                    ZStack{
+                        Rectangle()
+                        .fill(Color.gray)
+                        .opacity(0.2)
+                        .frame(width: 250, height: 70, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        Rectangle()
+                        .fill(Color.clear)
+                        .opacity(0.3)
+                        .frame(width: 230, height: 60, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        ZStack{
+                            VStack(alignment: .leading){
+                                Rectangle()
+                                    .fill(Color.blue)
+                                    .frame(width: 230, height: 10)
+                                Rectangle()
+                                    .fill(Color.blue)
+                                    .frame(width: 170, height: 10)
+                                    .opacity(0.5)
+                                Rectangle()
+                                    .fill(Color.blue)
+                                    .frame(width: 100, height: 10)
+                                    .opacity(0.5)
+                            }
+                        }
+                        
+                    }
+                    VStack{
+                        Text("2H 32M")
+                        Text("1H 50M")
+                        Text("1H 03M")
+                    }
                 }
-                .padding(.bottom, 20)
+                
+//                HStack {
+//                    Text("식단 계획")
+//                        .font(.title3).fontWeight(.medium)
+//                    Spacer()
+//                }
+//                .padding(.bottom, 20)
+                
+                
+                Text("식단 계획").font(.title/*@END_MENU_TOKEN@*/).fontWeight(/*@START_MENU_TOKEN@*/.bold)
+                Text("아침").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
 
                 FoodRow(food: foodSamples[0])
+//                Text("점심").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 FoodRow(food: foodSamples[1])
                 FoodRow(food: foodSamples[2])
             }
@@ -69,10 +107,29 @@ struct Home: View {
                     }
                 }
             )
-        }
+//        }
     }
 }
 
+private extension Home {
+    var topBtn: some View {
+        HStack {
+            Button(action: {
+                print("press alert")
+            }) { Image(systemName: "bell").imageScale(.large)
+            }
+            
+            Button(action: {
+                print("press setting")
+            }) { Image(systemName: "gear").imageScale(.large)
+            }
+        }
+    }
+    
+    var title: some View {
+        Text("BodyCheck").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+    }
+}
 //struct SomeView: View {
 //    var body: some View {
 //        HStack(alignment: .top, spacing: 5) {

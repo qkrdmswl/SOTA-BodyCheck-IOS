@@ -10,7 +10,7 @@ import Foundation
  final class Bucket {
    var foods: [Food]
    
-   init(filename: String = "ProductData.json") {
+   init(filename: String = "FoodData.json") {
      self.foods = Bundle.main.decode(filename: filename, as: [Food].self)
    }
  }
