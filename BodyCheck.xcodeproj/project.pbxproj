@@ -17,7 +17,6 @@
 		2633224D26BFC99E00359C89 /* ShrinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2633224C26BFC99E00359C89 /* ShrinkButtonStyle.swift */; };
 		2633224F26BFCED200359C89 /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2633224E26BFCED200359C89 /* BundleExtension.swift */; };
 		2633225126BFCF8600359C89 /* Bucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2633225026BFCF8600359C89 /* Bucket.swift */; };
-		2633225626BFD01500359C89 /* ProductData.json in Resources */ = {isa = PBXBuildFile; fileRef = 2633225526BFD01500359C89 /* ProductData.json */; };
 		26CF24FD26C94355003FAF30 /* FindAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF24FC26C94355003FAF30 /* FindAccountView.swift */; };
 		26CF24FF26C94360003FAF30 /* PassModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF24FE26C94360003FAF30 /* PassModel.swift */; };
 		26CF250126C9436C003FAF30 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF250026C9436C003FAF30 /* LoginView.swift */; };
@@ -51,7 +50,6 @@
 		2633224C26BFC99E00359C89 /* ShrinkButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShrinkButtonStyle.swift; sourceTree = "<group>"; };
 		2633224E26BFCED200359C89 /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
 		2633225026BFCF8600359C89 /* Bucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bucket.swift; sourceTree = "<group>"; };
-		2633225526BFD01500359C89 /* ProductData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = ProductData.json; path = ../../../SweetSwiftUI/FruitMart/Resources/ProductData.json; sourceTree = "<group>"; };
 		26CF24FC26C94355003FAF30 /* FindAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindAccountView.swift; sourceTree = "<group>"; };
 		26CF24FE26C94360003FAF30 /* PassModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassModel.swift; sourceTree = "<group>"; };
 		26CF250026C9436C003FAF30 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -104,7 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				26F150E226B61D0900AC3DA4 /* Assets.xcassets */,
-				2633225526BFD01500359C89 /* ProductData.json */,
 				260BC6E726CFEDD0002BBA2F /* FoodData.json */,
 			);
 			path = Resource;
@@ -113,6 +110,11 @@
 		26CF250C26C94524003FAF30 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				26CF250026C9436C003FAF30 /* LoginView.swift */,
+				26CF250226C94376003FAF30 /* Login.swift */,
+				26CF250426C94382003FAF30 /* SignupView.swift */,
+				26CF24FE26C94360003FAF30 /* PassModel.swift */,
+				26CF24FC26C94355003FAF30 /* FindAccountView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -163,11 +165,6 @@
 			children = (
 				26F150F426B61DA400AC3DA4 /* HomeView.swift */,
 				26CF250C26C94524003FAF30 /* Login */,
-				26CF250026C9436C003FAF30 /* LoginView.swift */,
-				26CF250226C94376003FAF30 /* Login.swift */,
-				26CF250426C94382003FAF30 /* SignupView.swift */,
-				26CF24FE26C94360003FAF30 /* PassModel.swift */,
-				26CF24FC26C94355003FAF30 /* FindAccountView.swift */,
 				26F150F126B61D2E00AC3DA4 /* Home */,
 			);
 			path = Interface;
@@ -259,7 +256,6 @@
 				26F150E626B61D0900AC3DA4 /* Preview Assets.xcassets in Resources */,
 				26F150E326B61D0900AC3DA4 /* Assets.xcassets in Resources */,
 				260BC6E826CFEDD0002BBA2F /* FoodData.json in Resources */,
-				2633225626BFD01500359C89 /* ProductData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
