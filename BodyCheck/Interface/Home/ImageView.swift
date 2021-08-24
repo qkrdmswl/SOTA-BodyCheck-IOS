@@ -7,8 +7,24 @@
 
 import SwiftUI
 
-struct ImageView: View {
 
+struct ImageView: View {
+//    var dateFormatter : DateFormatter{
+//        let formatter = DateFormatter()
+//        formatter.dateStyle = .short
+//        return formatter
+//    }
+    var dateFormatter :DateFormatter{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "M월 d일"
+        return formatter
+    }
+//    static let dateFormat: DateFormatter = {
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "M월 d일"
+//        return formatter
+//    }()
+    
     @State private var date = Date()
     @State private var isShowPhotoLibrary = false
     @State private var image = UIImage()
@@ -25,7 +41,10 @@ struct ImageView: View {
             .datePickerStyle(GraphicalDatePickerStyle())
 
             Text("성중님의").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-            Text("8/14 운동 통계").font(.title/*@END_MENU_TOKEN@*/).fontWeight(/*@START_MENU_TOKEN@*/.bold)
+//            Text("8/14 운동통계")
+            Text("\(date, formatter: dateFormatter) 운동통계")
+                .font(.title/*@END_MENU_TOKEN@*/)
+                .fontWeight(/*@START_MENU_TOKEN@*/.bold)
 
             HStack{
                 VStack{
@@ -69,7 +88,7 @@ struct ImageView: View {
                 .fill(Color.white)
                 .frame(height:30)
 
-            Text("오늘의 운동 기록")
+            Text("\(date, formatter: dateFormatter) 운동 기록")
                 .font(.title)
                 .fontWeight(.bold)
 
@@ -103,6 +122,7 @@ struct ImageView: View {
         }
     }
 }
+
 struct ImageView_Previews: PreviewProvider {
     static var previews: some View {
         ImageView()
