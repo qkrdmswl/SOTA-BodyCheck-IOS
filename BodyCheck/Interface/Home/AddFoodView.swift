@@ -1,13 +1,15 @@
 //
-//  FoodDetailView.swift
+//  AddFoodView.swift
 //  BodyCheck
 //
-//  Created by hyunsubong on 2021/08/08.
+//  Created by hyunsubong on 2021/08/29.
 //
 
 import SwiftUI
 
-struct FoodDetailView: View {
+private var g_foodName: String = ""
+
+struct AddFoodView: View {
   let food: Food
   
   @State private var quantity: Int = 1
@@ -29,7 +31,8 @@ struct FoodDetailView: View {
   }
 }
 
-private extension FoodDetailView {
+private extension AddFoodView {
+    
     // MARK: 식단 사진
   var foodImage: some View {
     let effect = AnyTransition.scale.combined(with: .opacity)
@@ -54,45 +57,40 @@ private extension FoodDetailView {
       .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: -5)
     }
   }
-
+    
   var foodDescription: some View {
     // MARK: 식단 정보
     VStack(alignment: .leading, spacing: 16) {
-      HStack {
-        Text(food.name)
-          .font(.largeTitle).fontWeight(.medium)
-          .foregroundColor(.black)
-        
-        Spacer()
-        
-      }
-      
-      Text(splitText(food.description))
-        .foregroundColor(.gray)
-        .fixedSize()
+        FoodNameForm()
+        FoodDescriptionForm()
+        if (self.showingAlert == true) {
+            Text("1")
+            Text(foodSamples[5].name)
+        }
+        else {
+            Text("0")
+        }
     }
   }
     // MARK: 식단 칼로리
   var kcalInfo: some View {
-    let kcal = quantity * food.kcal
-    return HStack {
-      (Text("\(kcal)").font(.title)
-        + Text(" kcal").font(.title2)
-        ).fontWeight(.medium)
-      Spacer()
-      QuantitySelector(quantity: $quantity)
+    HStack {
+        FoodKcalForm()
+        (Text("kcal").font(.title2)).fontWeight(.medium)
     }
     .foregroundColor(.black)
   }
-  
+
+    // MARK: 추가 버튼
   var addButton: some View {
     Button(action: {
-//      self.showingAlert = true
+      self.showingAlert = true
+        foodSamples.append(Food(name: g_foodName, imageName: "rice", kcal: 500, description: "2개 먹음"))
     }) {
       Capsule()
-        .fill(Color.white) // 숨김 (표시: blue)
+        .fill(Color.blue)
         .frame(maxWidth: .infinity, minHeight: 30, maxHeight: 55)
-        .overlay(Text("")
+        .overlay(Text("추가하기")
           .font(.system(size: 20)).fontWeight(.medium)
           .foregroundColor(Color.white))
         .padding(.vertical, 8)
@@ -113,8 +111,48 @@ private extension FoodDetailView {
   }
 }
 
-struct ProductDetailView_Previews: PreviewProvider {
+// MARK: Form
+struct FoodNameForm: View {
+    @State var foodName = ""
+    var body: some View {
+        HStack{
+            Text("이름")
+            TextField("여기에 입력하세요.", text: $foodName)
+                            .frame(width: 200, height: 5)
+                            .padding()
+        }
+        .textFieldStyle(RoundedBorderTextFieldStyle())
+    }
+}
+
+struct FoodDescriptionForm: View {
+    @State var foodDescription = ""
+    var body: some View {
+        HStack{
+            Text("설명")
+            TextField("여기에 입력하세요.", text: $foodDescription)
+                .frame(width: 200, height: 5.0)
+                .padding()
+        }
+        .textFieldStyle(RoundedBorderTextFieldStyle())
+    }
+}
+
+struct FoodKcalForm: View {
+    @State var foodKcal: String = ""
+    var body: some View {
+        HStack{
+            TextField("칼로리", text: $foodKcal)
+                .frame(width: 100, height: 20)
+                .padding()
+        }
+        .textFieldStyle(RoundedBorderTextFieldStyle())
+    }
+}
+
+// MARK: PreView
+struct AddFoodView_Previews: PreviewProvider {
   static var previews: some View {
-    FoodDetailView(food: foodSamples[1])
+    AddFoodView(food: foodSamples[1])
   }
 }
