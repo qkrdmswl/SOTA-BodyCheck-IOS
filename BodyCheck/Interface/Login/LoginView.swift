@@ -6,24 +6,65 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct LoginView: View {
+    
+    @State var isLinkActive = false
+    @State var message: String = "API 호출 중..."
+    
     var body: some View {
         NavigationView {
             VStack {
                 // 타이틀
                 AppTitle()
+                Spacer()
                 EmailForm()
                 PasswordForm()
-                LoginAction()
+//                LoginAction()
+                HStack {
+                    ToggleView()
+                    NavigationLink(destination: HomeView(), isActive: $isLinkActive) {
+                        Button(action: {
+                            request("http://localhost:5001/auth/login", "POST") { (success, data) in
+                                self.message = data as! String
+                            }
+                            self.isLinkActive = true
+                        }) {
+                            Text("로그인")
+                                .frame(width: 80, height: 10)
+                                .padding()
+                                .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
+                            }
+                        }
+                }
+                
+                NavigationLink(destination: HomeView(), isActive: $isLinkActive) {
+                    Button(action: {
+                        AF.request("http://localhost:5001/auth/login", method: .post, parameters: ["email": "a@a.a", "password": "a"], encoding: URLEncoding.httpBody).responseJSON() { response in
+                          switch response.result {
+                          case .success:
+                            if let data = try! response.result.get() as? [String: Any] {
+                                print(data)
+                            }
+                          case .failure(let error):
+                            print("Error: \(error)")
+                            return
+                          }
+                        }
+                        self.isLinkActive = true
+                    }) {
+                        Text("api 테스트")
+                            .frame(width: 80, height: 10)
+                            .padding()
+                            .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
+                        }
+                    }
+                
+            
                 
                 Spacer()
                 
-                NavigationLink(
-                    destination: HomeView(),
-                    label: {
-                        Text("로그인")
-                })
                 HStack (spacing: 20){
                     NavigationLink(
                         destination: FindAccountView(),
@@ -38,14 +79,13 @@ struct LoginView: View {
                 }.padding()
             }
         }
+        .navigationBarHidden(true)
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
-            
-            
     }
 }
 
@@ -57,9 +97,8 @@ struct AppTitle: View {
                 .font(.title)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .foregroundColor(Color.blue)
-                .padding()
         }
-        .frame(maxHeight: 250, alignment: .center)
+//        .frame(maxHeight: 250, alignment: .center)
     }
 }
 
@@ -95,6 +134,7 @@ struct PasswordForm: View {
 
 struct LoginAction: View {
     @State private var isOn = true
+    @State var isLinkActive = false
     
     init() {
         UISwitch.appearance().onTintColor = .gray
@@ -104,7 +144,6 @@ struct LoginAction: View {
     var body: some View {
         HStack {
             ToggleView()
-            
             Button(action: { }) {
                 Text("로그인")
                     .frame(width: 80, height: 10)

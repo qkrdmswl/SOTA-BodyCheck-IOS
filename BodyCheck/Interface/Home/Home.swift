@@ -8,15 +8,11 @@
 import SwiftUI
 
 struct Home: View {
+    @State var isAdd = false
+    @State var message: String = "API 호출 중..."
 //    let bucket: Bucket
     var body: some View {
-//        NavigationView {
-            
-//            List(bucket.foods) { food in
-//                     NavigationLink(destination: Text("상세 정보")) {
-//                       FoodRow(food: food)
-//                     }
-//                   }
+        NavigationView {
             ScrollView() {
                 HStack {
                     title
@@ -35,6 +31,7 @@ struct Home: View {
 //                .padding(.bottom, 20)
 //                .padding(.top, 60)
                 
+                // MARK: 운동 통계
                 Text("성중님의").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 Text("8/14 운동 통계").font(.title/*@END_MENU_TOKEN@*/).fontWeight(/*@START_MENU_TOKEN@*/.bold)
 
@@ -77,37 +74,68 @@ struct Home: View {
                     }
                 }
                 
-//                HStack {
-//                    Text("식단 계획")
-//                        .font(.title3).fontWeight(.medium)
-//                    Spacer()
-//                }
-//                .padding(.bottom, 20)
-                
-                
+                // MARK: 식단계획
                 Text("식단 계획").font(.title/*@END_MENU_TOKEN@*/).fontWeight(/*@START_MENU_TOKEN@*/.bold)
                 Text("아침").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-
-                FoodRow(food: foodSamples[0])
-//                Text("점심").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                FoodRow(food: foodSamples[1])
-                FoodRow(food: foodSamples[2])
-            }
-            .navigationTitle("BodyCheck")
-            .navigationBarItems(trailing:
-                HStack {
+                
+                // 아침
+                NavigationLink(destination: addUpdate(), isActive: $isAdd) {
                     Button(action: {
-                        print("press alert")
-                    }) { Image(systemName: "bell").imageScale(.large)
-                    }
-                    
-                    Button(action: {
-                        print("press setting")
-                    }) { Image(systemName: "gear").imageScale(.large)
+                        self.isAdd = true
+                        })
+                    {
+                        Text("아침 식단 추가")
+                            .frame(width: 100, height: 10)
+                            .padding()
+                            .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
                     }
                 }
-            )
-//        }
+                // 점심
+                NavigationLink(destination: addUpdate(), isActive: $isAdd) {
+                    Button(action: {
+                        self.isAdd = true
+                        })
+                    {
+                        Text("점심 식단 추가")
+                            .frame(width: 100, height: 10)
+                            .padding()
+                            .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
+                    }
+                }
+                // 저녁
+                NavigationLink(destination: addUpdate(), isActive: $isAdd) {
+                    Button(action: {
+                        self.isAdd = true
+                        })
+                    {
+                        Text("저녁 식단 추가")
+                            .frame(width: 100, height: 10)
+                            .padding()
+                            .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
+                    }
+                }
+//                .navigationBarHidden(true)
+//                FoodRow(food: foodSamples[0])
+//                Text("점심").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+//                FoodRow(food: foodSamples[1])
+//                FoodRow(food: foodSamples[2])
+            }
+//            .navigationTitle("BodyCheck")
+//            .navigationBarItems(trailing:
+//                HStack {
+//                    Button(action: {
+//                        print("press alert")
+//                    }) { Image(systemName: "bell").imageScale(.large)
+//                    }
+//
+//                    Button(action: {
+//                        print("press setting")
+//                    }) { Image(systemName: "gear").imageScale(.large)
+//                    }
+//                }
+//            )
+        }
+        .navigationBarHidden(true)
     }
 }
 

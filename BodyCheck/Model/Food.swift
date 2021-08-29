@@ -19,7 +19,7 @@ import Foundation
 extension Food: Decodable {}
 extension Food: Identifiable {}
 
- let foodSamples = [
+ var foodSamples = [
    Food(name: "흰쌀밥", imageName: "rice", kcal: 500, description: "2개 먹음"),
    Food(name: "아보카도", imageName: "avocado", kcal: 500, description: "~~~~~~~~~~"),
    Food(name: "바나나", imageName: "banana", kcal: 500, description: "맛있다.", isFavorite: true),

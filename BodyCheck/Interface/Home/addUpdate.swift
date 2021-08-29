@@ -17,6 +17,7 @@ struct addUpdate : View {
     
     var body: some View {
         NavigationView {
+            // MARK: 리스트
             List {
                 Section(header: Text("운동")){
                     ForEach(exercise, id: \.self) { exercise in
@@ -32,19 +33,26 @@ struct addUpdate : View {
                     .onMove(perform: move)
                 }
                 
+                Section(header: Text("테스트")){
+                    ForEach(foodSamples) {
+                        obj in Text(obj.name)
+                    }
+//                    .onMove(perform: move)
+                }
+                
             }
-            .navigationBarItems(trailing:
+            // MARK: 네비게이션
+            .navigationBarItems(
+                trailing:
                 HStack {
                     EditButton()
-                    
-                    Button(action: {
-                        print("Edit button pressed...")
-                    }) {
+                    NavigationLink(destination: AddFoodView(food: foodSamples[1])) {
                         Text("추가")
                     }
                 }
             )
         }
+        .navigationBarHidden(true)
     }
 
     func move(from source: IndexSet, to destination: Int) {

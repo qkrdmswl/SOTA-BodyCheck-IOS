@@ -3,10 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2603D24C26DB684500C3C9E9 /* request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2603D24B26DB684500C3C9E9 /* request.swift */; };
+		2603D25026DB6A3100C3C9E9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2603D24F26DB6A3100C3C9E9 /* Alamofire */; };
+		2603D25226DB8E3A00C3C9E9 /* AddFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2603D25126DB8E3A00C3C9E9 /* AddFoodView.swift */; };
+		2603D25426DBB02C00C3C9E9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2603D25326DBB02C00C3C9E9 /* Images.xcassets */; };
 		260BC6E826CFEDD0002BBA2F /* FoodData.json in Resources */ = {isa = PBXBuildFile; fileRef = 260BC6E726CFEDD0002BBA2F /* FoodData.json */; };
 		2633223F26BFC1E700359C89 /* FoodDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2633223E26BFC1E700359C89 /* FoodDetailView.swift */; };
 		2633224126BFC29300359C89 /* QuantitySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2633224026BFC29300359C89 /* QuantitySelector.swift */; };
@@ -40,6 +44,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2603D24B26DB684500C3C9E9 /* request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = request.swift; sourceTree = "<group>"; };
+		2603D25126DB8E3A00C3C9E9 /* AddFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodView.swift; sourceTree = "<group>"; };
+		2603D25326DBB02C00C3C9E9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		260BC6E726CFEDD0002BBA2F /* FoodData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FoodData.json; sourceTree = "<group>"; };
 		2633223E26BFC1E700359C89 /* FoodDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailView.swift; sourceTree = "<group>"; };
 		2633224026BFC29300359C89 /* QuantitySelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantitySelector.swift; sourceTree = "<group>"; };
@@ -79,12 +86,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2603D25026DB6A3100C3C9E9 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2603D24D26DB698200C3C9E9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2603D24B26DB684500C3C9E9 /* request.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		2633224226BFC37900359C89 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,11 +159,13 @@
 				26F150F826B624B500AC3DA4 /* Model */,
 				26F150DC26B61D0700AC3DA4 /* AppDelegate.swift */,
 				26F150DE26B61D0700AC3DA4 /* SceneDelegate.swift */,
+				2603D24D26DB698200C3C9E9 /* Controller */,
 				26F150E026B61D0700AC3DA4 /* ContentView.swift */,
 				26F150E726B61D0900AC3DA4 /* LaunchScreen.storyboard */,
 				26F150EA26B61D0900AC3DA4 /* Info.plist */,
 				2633224226BFC37900359C89 /* CustomView */,
 				26F150E426B61D0900AC3DA4 /* Preview Content */,
+				2603D25326DBB02C00C3C9E9 /* Images.xcassets */,
 			);
 			path = BodyCheck;
 			sourceTree = "<group>";
@@ -183,6 +201,7 @@
 				26CF250626C94390003FAF30 /* addUpdate.swift */,
 				26CF250826C9441F003FAF30 /* ImagePicker.swift */,
 				26CF250A26C9443B003FAF30 /* ImageView.swift */,
+				2603D25126DB8E3A00C3C9E9 /* AddFoodView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -211,6 +230,9 @@
 			dependencies = (
 			);
 			name = BodyCheck;
+			packageProductDependencies = (
+				2603D24F26DB6A3100C3C9E9 /* Alamofire */,
+			);
 			productName = BodyCheck;
 			productReference = 26F150D926B61D0700AC3DA4 /* BodyCheck.app */;
 			productType = "com.apple.product-type.application";
@@ -238,6 +260,9 @@
 				Base,
 			);
 			mainGroup = 26F150D026B61D0700AC3DA4;
+			packageReferences = (
+				2603D24E26DB6A3100C3C9E9 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 26F150DA26B61D0700AC3DA4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -253,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26F150E926B61D0900AC3DA4 /* LaunchScreen.storyboard in Resources */,
+				2603D25426DBB02C00C3C9E9 /* Images.xcassets in Resources */,
 				26F150E626B61D0900AC3DA4 /* Preview Assets.xcassets in Resources */,
 				26F150E326B61D0900AC3DA4 /* Assets.xcassets in Resources */,
 				260BC6E826CFEDD0002BBA2F /* FoodData.json in Resources */,
@@ -277,6 +303,7 @@
 				26F150DF26B61D0700AC3DA4 /* SceneDelegate.swift in Sources */,
 				2633224B26BFC8C300359C89 /* Resize.swift in Sources */,
 				26F150F326B61D3900AC3DA4 /* Home.swift in Sources */,
+				2603D24C26DB684500C3C9E9 /* request.swift in Sources */,
 				26CF250326C94376003FAF30 /* Login.swift in Sources */,
 				2633224F26BFCED200359C89 /* BundleExtension.swift in Sources */,
 				26F150F526B61DA400AC3DA4 /* HomeView.swift in Sources */,
@@ -285,6 +312,7 @@
 				26CF250726C94390003FAF30 /* addUpdate.swift in Sources */,
 				26FC375526C8CEE900D5E44A /* StopWatchView.swift in Sources */,
 				26CF24FD26C94355003FAF30 /* FindAccountView.swift in Sources */,
+				2603D25226DB8E3A00C3C9E9 /* AddFoodView.swift in Sources */,
 				26CF250126C9436C003FAF30 /* LoginView.swift in Sources */,
 				2633224626BFC4A600359C89 /* CompleteMessage.swift in Sources */,
 				26F150F726B621E600AC3DA4 /* FoodRow.swift in Sources */,
@@ -428,6 +456,7 @@
 		26F150EE26B61D0900AC3DA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"BodyCheck/Preview Content\"";
@@ -441,13 +470,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sotaios.BodyCheck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		26F150EF26B61D0900AC3DA4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"BodyCheck/Preview Content\"";
@@ -461,7 +491,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sotaios.BodyCheck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -487,6 +517,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2603D24E26DB6A3100C3C9E9 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2603D24F26DB6A3100C3C9E9 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2603D24E26DB6A3100C3C9E9 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 26F150D126B61D0700AC3DA4 /* Project object */;
 }
