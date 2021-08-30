@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Foundation
-
+import Alamofire
 
 struct SignupForm: View {
     
@@ -15,8 +15,8 @@ struct SignupForm: View {
     
     @State var name = ""
     @State var gender = 0
-    @State var bornIn = 0
-    @State var id = ""
+    @State var age = 0
+    @State var email = ""
     @ObservedObject var model: PassModel
     @State private var buttonIsDisabled = true
     
@@ -32,7 +32,7 @@ struct SignupForm: View {
                     
                     Section(header: Text("생년월일")){
                         //선택하는 값을 bornIn 변수에 할당
-                        Picker("출생년도",selection: $bornIn){
+                        Picker("출생년도",selection: $age){
                             // 1900부터 2021까지
                             ForEach((1900...2021).reversed(), id: \.self ){
                                 Text("\(String($0))년생")
@@ -52,8 +52,8 @@ struct SignupForm: View {
                     }
                     
                     
-                    Section(header: Text("아이디")){  // 중복허용?
-                        TextField("아이디를 입력해주세요", text: $id)
+                    Section(header: Text("이메일")){  // 중복허용?
+                        TextField("이메일을 입력해주세요", text: $email)
                             .keyboardType(.default)
                     }
                     
@@ -80,9 +80,21 @@ struct SignupForm: View {
                     }
                 }
                 
-                Button(action: {}) {
+                Button(action: {
+                    AF.request("http://localhost:5001/auth/join", method: .post, parameters: ["email": email, "password": model.$firstEntry], encoding: URLEncoding.httpBody).responseJSON() { response in
+                      switch response.result {
+                      case .success:
+                        if let data = try! response.result.get() as? [String: Any] {
+                            print(data)
+                        }
+                      case .failure(let error):
+                        print("Error: \(error)")
+                        return
+                      }
+                    }
+                }) {
                     Text("회원가입")
-                }.disabled(buttonIsDisabled || id.isEmpty || name.isEmpty)
+                }.disabled(buttonIsDisabled || email.isEmpty || name.isEmpty)
                     .onReceive(model.submitAllowed) { submitAllowed in
                         self.buttonIsDisabled = !submitAllowed
                 }

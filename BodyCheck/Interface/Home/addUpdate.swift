@@ -46,8 +46,12 @@ struct addUpdate : View {
                 trailing:
                 HStack {
                     EditButton()
+                    NavigationLink(destination:
+                        AddExerciseView()) {
+                        Text("운동 추가")
+                    }
                     NavigationLink(destination: AddFoodView(food: foodSamples[1])) {
-                        Text("추가")
+                        Text("식단 추가")
                     }
                 }
             )
