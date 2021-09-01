@@ -6,16 +6,20 @@
 //
 
 import SwiftUI
-
-private var g_foodName: String = ""
+import Alamofire
 
 struct AddFoodView: View {
   let food: Food
   
-  @State private var quantity: Int = 1
-  @State private var showingAlert: Bool = false
-  @State private var showingPopup: Bool = false
-  @State private var willAppear: Bool = false
+    @State private var quantity: Int = 1
+    @State private var showingAlert: Bool = false
+    @State private var showingPopup: Bool = false
+    @State private var willAppear: Bool = false
+    @State private var isPushSuccess: Bool = false
+    
+    @State private var foodName: String = ""
+    @State private var foodDes: String = ""
+    @State private var foodKcal: String = ""
   
     // body
   var body: some View {
@@ -61,21 +65,14 @@ private extension AddFoodView {
   var foodDescription: some View {
     // MARK: 식단 정보
     VStack(alignment: .leading, spacing: 16) {
-        FoodNameForm()
-        FoodDescriptionForm()
-        if (self.showingAlert == true) {
-            Text("1")
-            Text(foodSamples[5].name)
-        }
-        else {
-            Text("0")
-        }
+        FoodNameForm(foodName: $foodName)
+        FoodDescriptionForm(foodDes: $foodDes)
     }
   }
     // MARK: 식단 칼로리
   var kcalInfo: some View {
     HStack {
-        FoodKcalForm()
+        FoodKcalForm(foodKcal: $foodKcal)
         (Text("kcal").font(.title2)).fontWeight(.medium)
     }
     .foregroundColor(.black)
@@ -85,7 +82,29 @@ private extension AddFoodView {
   var addButton: some View {
     Button(action: {
       self.showingAlert = true
-        foodSamples.append(Food(name: g_foodName, imageName: "rice", kcal: 500, description: "2개 먹음"))
+        print("성공!")
+        print(foodName)
+        print(foodDes)
+        print(foodKcal)
+        
+        // MARK: 식단 추가
+        AF.request("http://localhost:5001/diets", method: .post, parameters: ["meal": "아침", "name": foodName, "memo": foodName, "DateRecordId": 5], encoding: URLEncoding.httpBody, headers: ["bodycheck-client-secret": "bodycheck_client_secret_sota"]).responseJSON() { response in
+                  switch response.result {
+                  case .success(let obj):
+                      if let nsDictionary = obj as? NSDictionary {
+                          for (key, value) in nsDictionary {
+                            let keyData: String = key as! String
+                            if (keyData == "success" && value as! Bool == true) {
+                                print("로그인 성공!")
+                                self.isPushSuccess = true
+                            }
+                          }
+                      }
+                  case .failure(let error):
+                      print(error.localizedDescription)
+                  }
+                }
+        
     }) {
       Capsule()
         .fill(Color.blue)
@@ -113,7 +132,7 @@ private extension AddFoodView {
 
 // MARK: Form
 struct FoodNameForm: View {
-    @State var foodName = ""
+    @Binding var foodName: String
     var body: some View {
         HStack{
             Text("이름")
@@ -126,11 +145,11 @@ struct FoodNameForm: View {
 }
 
 struct FoodDescriptionForm: View {
-    @State var foodDescription = ""
+    @Binding var foodDes: String
     var body: some View {
         HStack{
             Text("설명")
-            TextField("여기에 입력하세요.", text: $foodDescription)
+            TextField("여기에 입력하세요.", text: $foodDes)
                 .frame(width: 200, height: 5.0)
                 .padding()
         }
@@ -139,7 +158,7 @@ struct FoodDescriptionForm: View {
 }
 
 struct FoodKcalForm: View {
-    @State var foodKcal: String = ""
+    @Binding var foodKcal: String
     var body: some View {
         HStack{
             TextField("칼로리", text: $foodKcal)

@@ -6,20 +6,27 @@
 //
 
 import SwiftUI
-
-private var g_foodName: String = ""
+import Alamofire
 
 struct AddExerciseView: View {
   
-  @State private var showingAlert: Bool = false
-  @State private var showingPopup: Bool = false
-  @State private var willAppear: Bool = false
-  
-    // body
+    @State private var showingAlert: Bool = false
+    @State private var showingPopup: Bool = false
+    @State private var willAppear: Bool = false
+    @State private var isPushSuccess1: Bool = false
+    @State private var isPushSuccess2: Bool = false
+    @State private var isPushSuccess3: Bool = false
+    
+    @State var exerciseName: String = ""
+    @State var exerciseWeight: String = ""
+    @State var exerciseCount: String = ""
+    @State var exerciseSet: Int = 0
+    
+    // MARK: 바디 & 버튼
   var body: some View {
     VStack(spacing: 0) {
       if willAppear {
-        foodImage
+        exerciseImage
       }
       orderView
     }
@@ -31,8 +38,8 @@ struct AddExerciseView: View {
 
 private extension AddExerciseView {
     
-    // MARK: 식단 사진
-  var foodImage: some View {
+    // MARK: 운동 사진
+  var exerciseImage: some View {
     let effect = AnyTransition.scale.combined(with: .opacity)
       .animation(Animation.easeInOut(duration: 0.4).delay(0.05))
     return GeometryReader { _ in
@@ -44,7 +51,6 @@ private extension AddExerciseView {
       VStack(alignment: .leading) {
         self.exerciseInfo
         Spacer()
-        self.weightInfo
         self.addButton
       }
       .padding(32)
@@ -58,25 +64,60 @@ private extension AddExerciseView {
   var exerciseInfo: some View {
     // MARK: 운동 정보
     VStack(alignment: .leading, spacing: 16) {
-        ExerciseNameForm()
-        ExerciseWeightForm()
-        ExerciseCountForm()
-        ExerciseSetForm()
+        ExerciseNameForm(exerciseName: $exerciseName)
+        ExerciseWeightForm(exerciseWeight: $exerciseWeight)
+        ExerciseCountForm(exerciseCount: $exerciseCount)
+        ExerciseSetForm(exerciseSet: $exerciseSet)
     }
-  }
-    // MARK: 무게
-  var weightInfo: some View {
-    HStack {
-        ExerciseWeightForm()
-        (Text("kcal").font(.title2)).fontWeight(.medium)
-    }
-    .foregroundColor(.black)
   }
 
     // MARK: 추가 버튼
+    // 단순 운동명 추가 = exercise(이름)
+    // 기록포함 = exercise(이름) -> variable(무게,시간 등, 타입, ExerciseId) -> dateRecord -> record
   var addButton: some View {
     Button(action: {
-      self.showingAlert = true
+        self.showingAlert = true
+        print("성공!")
+        print(exerciseName)
+        print(exerciseWeight)
+        print(exerciseCount)
+        print(exerciseSet)
+        
+        // MARK: 운동
+        AF.request("http://localhost:5001/exercise", method: .post, parameters: ["name": exerciseName, "UserId": 5], encoding: URLEncoding.httpBody, headers: ["bodycheck-client-secret": "bodycheck_client_secret_sota"]).responseJSON() { response in
+          switch response.result {
+          case .success(let obj):
+              if let nsDictionary = obj as? NSDictionary {
+                  for (key, value) in nsDictionary {
+                    let keyData: String = key as! String
+                    if (keyData == "success" && value as! Bool == true) {
+                        print("성공!")
+                        self.isPushSuccess1 = true
+                    }
+                  }
+              }
+          case .failure(let error):
+              print(error.localizedDescription)
+          }
+        }
+        // MARK: 운동변수
+        AF.request("http://localhost:5001/variable", method: .post, parameters: ["name": "시간", "VariableTypeId": 3, "ExerciseId": 1], encoding: URLEncoding.httpBody, headers: ["bodycheck-client-secret": "bodycheck_client_secret_sota"]).responseJSON() { response in
+          switch response.result {
+          case .success(let obj):
+              if let nsDictionary = obj as? NSDictionary {
+                  for (key, value) in nsDictionary {
+                    let keyData: String = key as! String
+                    if (keyData == "success" && value as! Bool == true) {
+                        print("성공!")
+                        self.isPushSuccess2 = true
+                    }
+                  }
+              }
+          case .failure(let error):
+              print(error.localizedDescription)
+          }
+        }
+        
     }) {
       Capsule()
         .fill(Color.blue)
@@ -104,7 +145,7 @@ private extension AddExerciseView {
 
 // MARK: Form
 struct ExerciseNameForm: View {
-    @State var exerciseName = ""
+    @Binding var exerciseName: String
     var body: some View {
         HStack{
             Text("이름")
@@ -117,7 +158,7 @@ struct ExerciseNameForm: View {
 }
 
 struct ExerciseWeightForm: View {
-    @State var exerciseWeight = ""
+    @Binding var exerciseWeight: String
     var body: some View {
         HStack{
             Text("무게")
@@ -130,7 +171,7 @@ struct ExerciseWeightForm: View {
 }
 
 struct ExerciseCountForm: View {
-    @State var exerciseCount = ""
+    @Binding var exerciseCount: String
     var body: some View {
         HStack{
             Text("횟수")
@@ -143,24 +184,17 @@ struct ExerciseCountForm: View {
 }
 
 struct ExerciseSetForm: View {
-    @State var exerciseSet: String = ""
+    @Binding var exerciseSet: Int
     @State private var quantity: Int = 1
     var body: some View {
         let set = quantity
         return HStack {
             Text("세트    ")
-            Text("\(set)").font(.title).fontWeight(.medium).hidden()
+            Text("\(set)").font(.title).fontWeight(.medium)
                 Spacer()
                 QuantitySelector(quantity: $quantity)
               }
               .foregroundColor(.black)
-//        HStack{
-//            Text("세트")
-//            TextField("여기에 입력하세요", text: $exerciseSet)
-//                .frame(width: 200, height: 5)
-//                .padding()
-//        }
-//        .textFieldStyle(RoundedBorderTextFieldStyle())
     }
 }
 

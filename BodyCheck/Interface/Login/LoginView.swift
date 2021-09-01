@@ -8,9 +8,15 @@
 import SwiftUI
 import Alamofire
 
+struct LoginData {
+    var email: String?
+    var password: String?
+}
+
 struct LoginView: View {
     
     @State var isLinkActive = false
+    @State var isLoginSuccess = false
     @State var message: String = "API 호출 중..."
     
     var body: some View {
@@ -25,9 +31,24 @@ struct LoginView: View {
                 HStack {
                     ToggleView()
                     // 밑에 안씀
-                    NavigationLink(destination: HomeView(), isActive: $isLinkActive) {
+                    NavigationLink(destination: HomeView(), isActive: $isLoginSuccess) {
                         Button(action: {
-                            self.isLinkActive = true
+                            AF.request("http://localhost:5001/auth/login", method: .post, parameters: ["email": "a@a.a", "password": "a"], encoding: URLEncoding.httpBody, headers: ["bodycheck-client-secret": "bodycheck_client_secret_sota"]).responseJSON() { response in
+                              switch response.result {
+                              case .success(let obj):
+                                  if let nsDictionary = obj as? NSDictionary {
+                                      for (key, value) in nsDictionary {
+                                        let keyData: String = key as! String
+                                        if (keyData == "success" && value as! Bool == true) {
+                                            print("로그인 성공!")
+                                            self.isLoginSuccess = true
+                                        }
+                                      }
+                                  }
+                              case .failure(let error):
+                                  print(error.localizedDescription)
+                              }
+                            }
                         }) {
                             Text("로그인")
                                 .frame(width: 80, height: 10)
@@ -40,16 +61,15 @@ struct LoginView: View {
                 Button(action: {
                     AF.request("http://localhost:5001/auth/login", method: .post, parameters: ["email": "a@a.a", "password": "a"], encoding: URLEncoding.httpBody, headers: ["bodycheck-client-secret": "bodycheck_client_secret_sota"]).responseJSON() { response in
                       switch response.result {
-                      case .success:
-                        if let data = try! response.result.get() as? [String: Any] {
-                            print(data)
-                        }
+                      case .success(let jsonData):
+                        print(jsonData)
+                        self.isLoginSuccess = true
                       case .failure(let error):
                         print("Error: \(error)")
                         return
                       }
                     }
-                    self.isLinkActive = true
+//                    self.isLinkActive = true
                 }) {
                     Text("api 테스트 - POST")
                         .frame(width: 150, height: 10)

@@ -62,7 +62,7 @@ private extension HomeView {
     }
 
     var myPage: some View {
-        Text("마이페이지")
+        TestExerciseFoodRead()
             .tag(Tabs.myPage)
             .tabItem(image: "person", text: "마이페이지")
     }
