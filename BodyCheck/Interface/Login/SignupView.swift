@@ -11,18 +11,15 @@ import Alamofire
 
 struct SignupForm: View {
     
-    let genderType = ["남성","여성"]
-    
     @State var name = ""
-    @State var gender = 0
-    @State var age = 0
     @State var email = ""
     @ObservedObject var model: PassModel
     @State private var buttonIsDisabled = true
+    @State var isJoinSuccess = false
     
     
     var body: some View {
-//        NavigationView{
+        NavigationView{
             VStack{
                 Form{
                     Section(header: Text("이름")){
@@ -30,44 +27,20 @@ struct SignupForm: View {
                             .keyboardType(.default) //기본 키보드
                     }
                     
-                    Section(header: Text("생년월일")){
-                        //선택하는 값을 bornIn 변수에 할당
-                        Picker("출생년도",selection: $age){
-                            // 1900부터 2021까지
-                            ForEach((1900...2021).reversed(), id: \.self ){
-                                Text("\(String($0))년생")
-                            }
-                        }
-                    }
-                    
-                
-                    Section(header: Text("성별")){
-                        //선택하는 값을 bornIn 변수에 할당합니다.
-                        Picker("성별",selection: $gender){
-                            // 1900부터 2021까지 Text를 만듭니다.
-                            ForEach( 0  ..< genderType.count ){
-                                Text("\(self.genderType[$0])")
-                            }
-                        }.pickerStyle(SegmentedPickerStyle())
-                    }
-                    
-                    
-                    Section(header: Text("이메일")){  // 중복허용?
+                    Section(header: Text("이메일")){
                         TextField("이메일을 입력해주세요", text: $email)
                             .keyboardType(.default)
                     }
                     
-                    Section(header: Text("비밀번호")){  // 중복허용?
+                    Section(header: Text("비밀번호")){
                         SecureField("비밀번호를 입력해주세요", text: $model.firstEntry)
                             .keyboardType(.default)
                     }
                     
-                    Section(header: Text("비밀번호 확인")){  // 중복허용?
+                    Section(header: Text("비밀번호 확인")){
                         SecureField("비밀번호 한번 더 입력", text: $model.secondEntry)
                             .keyboardType(.default)
                     }
-                    
-//                }.navigationBarTitle("회원가입")
                 
                 VStack {
                     ForEach(model.validationMessages, id: \.self) { msg in
@@ -79,13 +52,15 @@ struct SignupForm: View {
                       }
                     }
                 }
-                
+            }
+                NavigationLink(destination: LoginView(), isActive: $isJoinSuccess) {
                 Button(action: {
-                    AF.request("http://localhost:5001/auth/join", method: .post, parameters: ["email": email, "password": model.$firstEntry], encoding: URLEncoding.httpBody).responseJSON() { response in
+                    AF.request("http://localhost:5001/auth/join", method: .post, parameters: ["email": email, "password": model.firstEntry], encoding: URLEncoding.httpBody, headers: ["bodycheck-client-secret": "bodycheck_client_secret_sota"]).responseJSON() { response in
                       switch response.result {
                       case .success:
                         if let data = try! response.result.get() as? [String: Any] {
                             print(data)
+                            self.isJoinSuccess = true
                         }
                       case .failure(let error):
                         print("Error: \(error)")
@@ -99,14 +74,13 @@ struct SignupForm: View {
                         self.buttonIsDisabled = !submitAllowed
                 }
                 .padding()
+//                  .padding(.vertical, 1)
                 .background(RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.blue)
                 )
-                Spacer()
-                                
-            }
+                }
+            }.navigationBarHidden(true)
         }
-            
     }
 }
 

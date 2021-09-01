@@ -78,17 +78,22 @@ struct Home: View {
                 Text("식단 계획").font(.title/*@END_MENU_TOKEN@*/).fontWeight(/*@START_MENU_TOKEN@*/.bold)
                 Text("아침").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 
+//                FoodRow(food: Food(name: "흰쌀밥", imageName: "rice", kcal: 500, description: "2개 먹음"))
+                
                 // 아침
                 NavigationLink(destination: addUpdate(), isActive: $isAdd) {
                     Button(action: {
                         self.isAdd = true
-                        })
+                    })
                     {
                         Text("아침 식단 추가")
                             .frame(width: 100, height: 10)
                             .padding()
                             .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
                     }
+//                    if (self.isAdd == true) {
+//                        Button.hidden()
+//                    }
                 }
                 // 점심
                 NavigationLink(destination: addUpdate(), isActive: $isAdd) {
@@ -99,10 +104,10 @@ struct Home: View {
                         Text("점심 식단 추가")
                             .frame(width: 100, height: 10)
                             .padding()
-                            .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
-                    }
+                           .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
+                   }
                 }
-                // 저녁
+//                // 저녁
                 NavigationLink(destination: addUpdate(), isActive: $isAdd) {
                     Button(action: {
                         self.isAdd = true
