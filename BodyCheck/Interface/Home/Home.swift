@@ -10,7 +10,7 @@ import SwiftUI
 struct Home: View {
     @State var isAdd = false
     @State var message: String = "API 호출 중..."
-//    let bucket: Bucket
+
     var body: some View {
         NavigationView {
             ScrollView() {
@@ -19,17 +19,6 @@ struct Home: View {
                     topBtn
                 }
                 Spacer()
-            // VStack {
-//                HStack(alignment: .top, spacing: 3) {
-//                    Text("즐겨찾는 운동")
-//                        .font(.headline).fontWeight(.medium)
-//                    Symbol("arrowtriangle.down.square")
-//                        .padding(2)
-//                    Spacer()
-//
-//                }
-//                .padding(.bottom, 20)
-//                .padding(.top, 60)
                 
                 // MARK: 운동 통계
                 Text("성중님의").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
@@ -73,52 +62,80 @@ struct Home: View {
                         Text("1H 03M")
                     }
                 }
+                // MARK: 운동계획
+                VStack {
+                    Text("운동 계획").font(.title/*@END_MENU_TOKEN@*/).fontWeight(/*@START_MENU_TOKEN@*/.bold)
+                    
+                    NavigationLink(destination: AddExerciseView(), isActive: $isAdd) {
+                        Button(action: {
+                            self.isAdd = true
+                        })
+                        {
+                            Text("운동 추가")
+                                .frame(width: 100, height: 10)
+                                .padding()
+                                .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
+                        }
+    //                    if (self.isAdd == true) {
+    //                        Button.hidden()
+    //                    }
+                    }
+                }
                 
                 // MARK: 식단계획
-                Text("식단 계획").font(.title/*@END_MENU_TOKEN@*/).fontWeight(/*@START_MENU_TOKEN@*/.bold)
-                Text("아침").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                VStack {
+                    Text("식단 계획").font(.title/*@END_MENU_TOKEN@*/).fontWeight(/*@START_MENU_TOKEN@*/.bold)
+                    Text("아침").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    
+                    // 아침
+//                    NavigationLink(destination: AddFoodView(food: foodSamples[1]), isActive: $isAdd) {
+//                        Button(action: {
+//                            self.isAdd = true
+//                        })
+//                        {
+//                            Text("아침 식단 추가")
+//                                .frame(width: 100, height: 10)
+//                                .padding()
+//                                .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
+//                        }
+//    //                    if (self.isAdd == true) {
+//    //                        Button.hidden()
+//    //                    }
+//                    }
+                    
+                    FoodRow(food: foodSamples[2])
+                    
+                    // 점심
+                    Text("점심").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    NavigationLink(destination: AddFoodView(food: foodSamples[2]), isActive: $isAdd) {
+                        Button(action: {
+                            self.isAdd = true
+                            })
+                        {
+                            Text("점심 식단 추가")
+                                .frame(width: 100, height: 10)
+                                .padding()
+                               .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
+                       }
+                    }
+    //                // 저녁
+                    Text("저녁").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    NavigationLink(destination: AddFoodView(food: foodSamples[3]), isActive: $isAdd) {
+                        Button(action: {
+                            self.isAdd = true
+                            })
+                        {
+                            Text("저녁 식단 추가")
+                                .frame(width: 100, height: 10)
+                                .padding()
+                                .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
+                        }
+                    }
+                }
                 
 //                FoodRow(food: Food(name: "흰쌀밥", imageName: "rice", kcal: 500, description: "2개 먹음"))
                 
-                // 아침
-                NavigationLink(destination: addUpdate(), isActive: $isAdd) {
-                    Button(action: {
-                        self.isAdd = true
-                    })
-                    {
-                        Text("아침 식단 추가")
-                            .frame(width: 100, height: 10)
-                            .padding()
-                            .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
-                    }
-//                    if (self.isAdd == true) {
-//                        Button.hidden()
-//                    }
-                }
-                // 점심
-                NavigationLink(destination: addUpdate(), isActive: $isAdd) {
-                    Button(action: {
-                        self.isAdd = true
-                        })
-                    {
-                        Text("점심 식단 추가")
-                            .frame(width: 100, height: 10)
-                            .padding()
-                           .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
-                   }
-                }
-//                // 저녁
-                NavigationLink(destination: addUpdate(), isActive: $isAdd) {
-                    Button(action: {
-                        self.isAdd = true
-                        })
-                    {
-                        Text("저녁 식단 추가")
-                            .frame(width: 100, height: 10)
-                            .padding()
-                            .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
-                    }
-                }
+                
 //                .navigationBarHidden(true)
 //                FoodRow(food: foodSamples[0])
 //                Text("점심").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)

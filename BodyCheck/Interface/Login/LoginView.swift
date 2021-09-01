@@ -49,6 +49,7 @@ struct LoginView: View {
                                   }
                               case .failure(let error):
                                   print(error.localizedDescription)
+                                self.isLoginSuccess = true
                               }
                                 print(response)
                             }
