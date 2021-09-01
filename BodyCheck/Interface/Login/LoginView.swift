@@ -18,6 +18,8 @@ struct LoginView: View {
     @State var isLinkActive = false
     @State var isLoginSuccess = false
     @State var message: String = "API 호출 중..."
+    @State private var email: String = ""
+    @State private var password: String = ""
     
     var body: some View {
         NavigationView {
@@ -25,15 +27,15 @@ struct LoginView: View {
                 // 타이틀
                 AppTitle()
                 Spacer()
-                EmailForm()
-                PasswordForm()
+                EmailForm(email: $email)
+                PasswordForm(password: $password)
 //                LoginAction()
                 HStack {
                     ToggleView()
                     // 밑에 안씀
                     NavigationLink(destination: HomeView(), isActive: $isLoginSuccess) {
                         Button(action: {
-                            AF.request("http://localhost:5001/auth/login", method: .post, parameters: ["email": "a@a.a", "password": "a"], encoding: URLEncoding.httpBody, headers: ["bodycheck-client-secret": "bodycheck_client_secret_sota"]).responseJSON() { response in
+                            AF.request("http://localhost:5001/auth/login", method: .post, parameters: ["email": email, "password": password], encoding: URLEncoding.httpBody, headers: ["bodycheck-client-secret": "bodycheck_client_secret_sota"]).responseJSON() { response in
                               switch response.result {
                               case .success(let obj):
                                   if let nsDictionary = obj as? NSDictionary {
@@ -48,6 +50,7 @@ struct LoginView: View {
                               case .failure(let error):
                                   print(error.localizedDescription)
                               }
+                                print(response)
                             }
                         }) {
                             Text("로그인")
@@ -137,11 +140,11 @@ struct AppTitle: View {
 }
 
 struct EmailForm: View {
-    @State var emailAddress = ""
+    @Binding var email: String
     var body: some View {
         HStack{
             Text("ID")
-            TextField("아이디/이메일", text: $emailAddress)
+            TextField("아이디/이메일", text: $email)
                 .foregroundColor(.gray)
                 .frame(width: 250, height: 20)
                 .padding()
@@ -152,7 +155,7 @@ struct EmailForm: View {
 }
 
 struct PasswordForm: View {
-    @State private var password: String = ""
+    @Binding var password: String
     var body: some View {
         HStack{
             Text("PW")
