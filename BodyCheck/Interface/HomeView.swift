@@ -44,7 +44,7 @@ private extension HomeView {
     }
 
     var chalender: some View {
-        ImageView()
+        TestExerciseFoodRead()
             .tag(Tabs.chalender)
             .tabItem(image: "person", text: "캘린더")
     }

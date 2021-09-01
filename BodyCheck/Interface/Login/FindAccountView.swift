@@ -29,6 +29,7 @@ struct FindAccountForm: View {
     var body: some View {
         NavigationView{
             VStack{
+                Spacer()
                 Form{
                     VStack{
                         HStack{ // 아이디도 가능?
@@ -36,7 +37,7 @@ struct FindAccountForm: View {
                                 .keyboardType(.default)
                             
                             Button(action: {
-                                self.clickCheck.toggle()
+                                self.clickCheck = true
                             }) {
                                 Text("인증번호 전송")
                             }.disabled(email.isEmpty)
@@ -50,7 +51,7 @@ struct FindAccountForm: View {
 //                                .keyboardType(.default)
 //                        }.hidden()
 //                        .padding(.top, 10)
-                        if self.clickCheck {
+                        if (self.clickCheck == true) {
                             Text("인증번호가 전송되었습니다.")
                             TextField("인증번호 입력", text: $checkNum)
                                 .keyboardType(.numberPad)
@@ -114,14 +115,10 @@ struct FindAccountForm: View {
                 
                 
                     
-            }.navigationBarTitle("계정찾기")
-                
-                Spacer()
-                                
-            }
+            }.navigationBarHidden(true)
         }
-            
     }
+}
 
 
 struct FindAccountView: View {
